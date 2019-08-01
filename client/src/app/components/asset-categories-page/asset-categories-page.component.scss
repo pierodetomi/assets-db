@@ -1,0 +1,54 @@
+@import "../../styles/variables";
+
+.asset-categories-page {
+    padding: 20px;
+
+    .add-input {
+        font-size: 24px;
+        font-weight: 300;
+        padding: 15px;
+    }
+
+    .asset-categories {
+        .asset-category {
+            position: relative;
+            margin: 5px 0;
+            background: lighten($app-boxes-bg, 8%);
+            padding: 10px;
+            border-radius: 2px;
+            transition: 300ms all;
+
+            &:hover, &.editing {
+                .actions {
+                    display: inline-block;
+                }
+            }
+
+            .actions {
+                display: none;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                right: 10px;
+                cursor: pointer;
+
+                .action {
+                    display: inline-block;
+                    margin: 0 10px;
+                    font-size: 14px;
+                    font-weight: 600;
+                    letter-spacing: 1px;
+                    text-transform: uppercase;
+
+                    &.red {
+                        color: $red;
+                    }
+
+                    &.green {
+                        color: $green;
+                    }
+                }
+            }
+        }
+    }
+}

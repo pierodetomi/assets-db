@@ -1,0 +1,75 @@
+<div class="asset-page" *ngIf="!isLoading">
+    <h1>{{asset.name}}</h1>
+
+    <div class="meta">
+        <div class="thumb">
+            <img [src]="getThumbnailUrl()" />
+        </div>
+    
+        <div class="details">
+            <div class="box">
+                <div class="info-block">
+                    <span class="label">Type</span>
+                    <span class="value">{{getTypeName()}}</span>
+                </div>
+        
+                <div class="info-block">
+                    <span class="label">Category 1</span>
+                    <span class="value">{{getCategoryName(asset.category1Id)}}</span>
+                </div>
+        
+                <div class="info-block">
+                    <span class="label">Category 2</span>
+                    <span class="value">{{getCategoryName(asset.category2Id)}}</span>
+                </div>
+        
+                <div class="info-block">
+                    <span class="label">Category 3</span>
+                    <span class="value">{{getCategoryName(asset.category3Id)}}</span>
+                </div>
+        
+                <div class="info-block">
+                    <span class="label">Tags</span>
+                    <span class="value">{{asset.tags}}</span>
+                </div>
+        
+                <div class="info-block">
+                    <span class="label">Engine</span>
+                    <span class="value">{{asset.engine}}</span>
+                </div>
+        
+                <div class="info-block">
+                    <span class="label">Engine Version</span>
+                    <span class="value">{{asset.engineVersion}}</span>
+                </div>
+        
+                <div class="info-block">
+                    <span class="label">Note</span>
+                    <span class="value">{{asset.note}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="files-container">
+        <h2>Files</h2>
+
+        <div class="box">
+            <div class="add-file-area">
+                <input type="file" name="file" placeholder="Select a file" (change)="onSelectedFileForUpload($event)" />
+                <button class="btn-green" [disabled]="!canAddFile()" (click)="addFile()">+ Add file</button>
+            </div>
+        </div>
+
+        <div class="files">
+            <div class="file" *ngFor="let _file of files">
+                <div class="actions">
+                    <span class="action green" (click)="downloadFile(_file)">download</span>
+                    <span class="action red" (click)="deleteFile(_file)">delete</span>
+                </div>
+                <div class="name">{{_file.name}}</div>
+                <div class="size">{{_file.size | fileSize}}</div>
+            </div>
+        </div>
+    </div>
+</div>

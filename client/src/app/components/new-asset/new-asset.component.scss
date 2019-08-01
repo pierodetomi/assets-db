@@ -1,0 +1,119 @@
+@import "../../styles/variables";
+
+$header-bg: darken($app-modal-bg, 10%);
+
+.new-asset {
+    display: none;
+
+    &.open {
+        display: initial;
+    }
+
+    .overlay {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: $app-overlay-bg;
+        z-index: 1000;
+    }
+
+    .modal {
+        position: fixed;
+        top: 50px;
+        bottom: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 800px;
+        background: $app-modal-bg;
+        border-radius: 2px;
+        overflow-y: auto;
+        z-index: 1001;
+
+        .header {
+            position: relative;
+            background: $header-bg;
+            padding: 20px;
+            text-align: center;
+
+            h1 {
+                margin: 0;
+                font-weight: 600;
+            }
+
+            .close {
+                position: absolute;
+                top: 10px;
+                right: 15px;
+                font-size: 20px;
+                font-weight: 700;
+                cursor: pointer;
+            }
+        }
+
+        .content {
+            padding: 20px;
+
+            .form-control {
+                display: inline-block;
+                width: 50%;
+                margin: 10px 0;
+                padding: 0 5px;
+
+                .label {
+                    font-size: 14px;
+                    font-weight: 600;
+                    color: $app-text-color;
+                    text-transform: uppercase;
+                }
+
+                .control {
+                    margin-top: 10px;
+                }
+            }
+
+            // input, textarea {
+            //     display: block;
+            //     background: $inputs-bg;
+            //     color: $app-text-color;
+            //     border: none;
+            //     padding: 10px;
+            //     margin: 10px 0;
+            //     width: 100%;
+            //     font-family: $app-font;
+            //     font-size: 16px;
+
+            //     &:focus, &:active {
+            //         outline: none;
+            //     }
+            // }
+
+            // select {
+            //     display: block;
+            //     background: $inputs-bg;
+            //     color: $app-text-color;
+            //     border: none;
+            //     padding: 10px;
+            //     margin: 10px 0;
+            //     width: 100%;
+            //     font-family: $app-font;
+            //     font-size: 16px;
+
+            //     &:focus, &:active {
+            //         outline: none;
+            //     }
+            // }
+
+            // ui-tags-input {
+            //     display: block;
+            //     margin: 10px 0;
+            //     max-width: 400px;
+            // }
+        }
+
+        .footer {
+            text-align: center;
+        }
+    }
+}

@@ -1,0 +1,20 @@
+@import "../../styles/variables";
+
+.asset-types-page {
+    padding: 20px;
+
+    .add-input {
+        font-size: 24px;
+        font-weight: 300;
+        padding: 15px;
+    }
+
+    .asset-types {
+        .asset-type {
+            margin: 5px 0;
+            background: lighten($app-boxes-bg, 8%);
+            padding: 10px;
+            border-radius: 2px;
+        }
+    }
+}

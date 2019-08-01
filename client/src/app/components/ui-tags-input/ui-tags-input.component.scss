@@ -1,0 +1,40 @@
+@import "../../styles/variables";
+
+$bg: $app-input-bg;
+$tag-bg: $green;
+$tag-color: $app-text-color;
+$input-font: $app-font;
+$input-color: $app-text-color;
+
+.ui-tags-input {
+    min-width: 100px;
+    min-height: 30px;
+    background: $bg;
+    padding: 8px;
+
+    .tag {
+        display: inline-block;
+        padding: 2px 10px;
+        margin: 4px;
+        border-radius: 2px;
+        font-size: 14px;
+        background: $tag-bg;
+        color: $tag-color;
+    }
+
+    .tag-input {
+        display: inline-block;
+        min-width: 10px;
+        background: none;
+        border: none;
+        color: $input-color;
+        width: auto;
+        margin-left: 5px;
+        font-family: $input-font;
+        font-family: 16px;
+
+        &:focus, &:active {
+            outline: none;
+        }
+    }
+}

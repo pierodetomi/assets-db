@@ -1,0 +1,104 @@
+@import "../../styles/variables";
+
+.asset-page {
+    padding: 20px;
+
+    .meta {
+        position: relative;
+
+        &:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    }
+
+    .thumb {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 400px;
+
+        img {
+            width: 100%;
+        }
+    }
+
+    .details {
+        position: relative;
+        padding-left: 420px;
+        
+        .box {
+            padding: 10px 20px;
+            background: $app-boxes-bg;
+    
+            .info-block {
+                margin: 10px 0;
+    
+                .label {
+                    opacity: 0.5;
+                    display: inline-block;
+                    width: 150px;
+                    font-size: 14px;
+                    font-weight: 600;
+                    text-transform: uppercase;
+                }
+    
+                .value {
+                    margin-left: 10px;
+                }
+            }
+        }
+    }
+
+    .files-container {
+        .files {
+            .file {
+                margin: 5px 0;
+                background: lighten($app-boxes-bg, 8%);
+                padding: 10px;
+                border-radius: 2px;
+
+                .size {
+                    font-size: 14px;
+                    font-weight: 600;
+                    opacity: 0.4;
+                }
+
+                &:hover {
+                    .actions {
+                        display: initial;
+                    }
+                }
+
+                .actions {
+                    display: none;
+                    float: right;
+
+                    .action {
+                        display: inline-block;
+                        margin: 0 10px;
+                        vertical-align: middle;
+                        font-size: 14px;
+                        font-weight: 600;
+                        letter-spacing: 1px;
+                        text-transform: uppercase;
+                        cursor: pointer;
+
+                        &.green {
+                            &:hover {
+                                color: $green;
+                            }
+                        }
+
+                        &.red {
+                            &:hover {
+                                color: $red;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

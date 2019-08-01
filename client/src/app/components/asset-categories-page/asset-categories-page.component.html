@@ -1,0 +1,24 @@
+<div class="asset-categories-page" *ngIf="!isLoading">
+    <div class="box">
+        Add new asset category:
+        <input class="add-input" type="text" placeholder="name" [(ngModel)]="newCategoryName" />
+        <button class="btn-green" [disabled]="!canAdd()" (click)="add()">+ Add Category</button>
+    </div>
+
+    <h2>Categories</h2>
+
+    <div class="asset-categories">
+        <div class="asset-category" [ngClass]="{ 'editing': _category.isEditing }" *ngFor="let _category of categories">
+            <span *ngIf="!_category.isEditing">{{_category.name}}</span>
+            <input *ngIf="_category.isEditing" type="text" [(ngModel)]="_category.editingName" />
+
+            <span class="actions">
+                <span class="action" *ngIf="!_category.isEditing" (click)="rename(_category)">Rename</span>
+                <span class="action red" *ngIf="!_category.isEditing">Delete</span>
+                
+                <span class="action green" *ngIf="_category.isEditing" (click)="confirmRename(_category)">Save</span>
+                <span class="action" *ngIf="_category.isEditing" (click)="cancelRename(_category)">Cancel</span>
+            </span>
+        </div>
+    </div>
+</div>

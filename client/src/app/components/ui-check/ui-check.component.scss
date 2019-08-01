@@ -1,0 +1,35 @@
+@import "../../styles/variables";
+
+$border-color: $light-gray;
+$bg: none;
+$checked-bg: $green;
+
+.ui-check {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+
+    .bg {
+        width: 100%;
+        height: 100%;
+        border: solid 2px $border-color;
+        border-radius: 2px;
+        background: $bg;
+        color: $app-text-color;
+        line-height: 14px;
+        text-align: center;
+        cursor: pointer;
+        transition: 200ms all;
+
+        &.checked {
+            background: $checked-bg;
+            border-color: $checked-bg;
+
+            &:after {
+                content: '\2713';
+                font-weight: 700;
+            }
+        }
+    }
+}

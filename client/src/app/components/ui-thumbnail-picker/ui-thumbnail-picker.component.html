@@ -1,0 +1,7 @@
+<div class="ui-thumbnail-picker">
+    <input class="file-picker" type="file" (change)="onThumbChange($event)" *ngIf="!hasThumbnail" />
+    
+    <div class="thumb" *ngIf="hasThumbnail">
+        <img [src]="thumbnailUrl" />
+    </div>
+</div>

@@ -1,0 +1,18 @@
+$green: #45ad74;
+$red: #c44d4d;
+$white: #fff;
+$dirty-white: #e4e4e4;
+$dark-gray: #2e2e2e;
+$mid-gray: #383838;
+$light-gray: #545454;
+
+$app-bg: $dark-gray;
+$app-boxes-bg: $mid-gray;
+$app-text-color: $dirty-white;
+
+$app-font: 'Source Sans Pro', sans-serif;
+
+$app-overlay-bg: rgba(0, 0, 0, 0.6);
+$app-modal-bg: lighten($app-boxes-bg, 5%);
+
+$app-input-bg: lighten($app-modal-bg, 10%);

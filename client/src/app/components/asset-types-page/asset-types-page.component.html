@@ -1,0 +1,15 @@
+<div class="asset-types-page" *ngIf="!isLoading">
+    <div class="box">
+        Add new asset type:
+        <input class="add-input" type="text" placeholder="name" [(ngModel)]="newTypeName" />
+        <button class="btn-green" [disabled]="!canAdd()" (click)="add()">+ Add Type</button>
+    </div>
+
+    <h2>Types</h2>
+
+    <div class="asset-types">
+        <div class="asset-type" *ngFor="let _type of types">
+            {{_type.name}}
+        </div>
+    </div>
+</div>

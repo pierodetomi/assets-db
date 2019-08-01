@@ -1,0 +1,27 @@
+<div class="side-filters">
+    <div class="actions">
+        <button class="btn-green" (click)="openNewAssetModal()">
+            + Add New
+        </button>
+    </div>
+
+    <div class="block">
+        <div class="title">Asset Types</div>
+        <div class="body" *ngIf="!isLoading">
+            <div class="check-filter" *ngFor="let _type of types">
+                <ui-check [(checked)]="_type.isChecked" (checkedChange)="onFilterChanged()"></ui-check> <span class="label">{{_type.name}}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="block">
+        <div class="title">Categories</div>
+        <div class="body ">
+            <div class="category-item" [ngClass]="{ 'active': selectedCategory == null }" (click)="selectCategory()">All</div>
+
+            <div class="category-item" [ngClass]="{ 'active': selectedCategory == _category }" *ngFor="let _category of categories" (click)="selectCategory(_category)">
+                {{_category.name}}
+            </div>
+        </div>
+    </div>
+</div>

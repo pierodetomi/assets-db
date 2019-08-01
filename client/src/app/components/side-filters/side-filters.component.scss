@@ -1,0 +1,58 @@
+@import "../../styles/variables";
+
+$block-title-bg: darken($app-bg, 3%);
+
+.side-filters {
+    position: absolute;
+    background: $app-boxes-bg;
+    left: 0;
+    width: 300px;
+    top: 65px;
+    bottom: 0;
+    overflow-y: auto;
+
+    .actions {
+        padding-top: 20px;
+        text-align: center;
+    }
+
+    .block {
+        margin: 20px 0;
+
+        .title {
+            padding: 10px;
+            background: $block-title-bg;;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .body {
+            padding: 20px;
+
+            .check-filter {
+                margin: 5px 0;
+                
+                .label {
+                    vertical-align: middle;
+                    margin-left: 10px;
+                }
+            }
+
+            .category-item {
+                padding: 5px 0;
+                cursor: pointer;
+                transition: 300ms color;
+
+                &:hover {
+                    color: darken($green, 15%);
+                }
+
+                &.active {
+                    color: $green;
+                }
+            }
+        }
+    }
+}

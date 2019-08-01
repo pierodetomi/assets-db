@@ -1,0 +1,25 @@
+<div class="assets-viewer">
+    <div class="search">
+        <input class="search-box" type="search" placeholder="Type to search ..." [(ngModel)]="searchQuery" (keypress)="onSearchKeyPress($event)" />
+    </div>
+
+    <div class="viewer" *ngIf="hasAssets">
+        <div class="asset-box" *ngFor="let _asset of assets" [routerLink]="'/asset/' + _asset.id">
+            <img class="thumb" [src]="getAssetThumbnailUrl(_asset)" />
+            <div class="details">
+                <div class="name">{{_asset.name}}</div>
+                <div class="type">{{getAssetTypeName(_asset.typeId)}}</div>
+                <div class="categories">
+                    in:
+                    <span>{{getAssetCategoryName(_asset.category1Id)}}</span>
+                    <span>{{getAssetCategoryName(_asset.category2Id)}}</span>
+                    <span>{{getAssetCategoryName(_asset.category3Id)}}</span>
+
+                    |
+
+                    <span>{{_asset.tags}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

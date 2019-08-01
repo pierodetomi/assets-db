@@ -1,0 +1,4 @@
+<div class="ui-tags-input">
+    <span class="tag" *ngFor="let _tag of tags">{{_tag}}</span>
+    <input class="tag-input" type="text" placeholder="Type and press ENTER ..." (keydown)="onKeyDown($event)" (keypress)="onKeyPress($event)" [(ngModel)]="tag" />
+</div>

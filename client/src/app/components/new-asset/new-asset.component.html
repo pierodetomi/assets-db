@@ -1,0 +1,112 @@
+<div class="new-asset" [ngClass]="{ 'open': isOpen }">
+    <div class="overlay"></div>
+    <div class="modal">
+        <div class="header">
+            <h1>Add new asset</h1>
+
+            <span class="close" (click)="close()">&#10005;</span>
+        </div>
+
+        <div class="content">
+            <div>
+                <div class="form-control">
+                    <div class="label">Thumbnail</div>
+                    <div class="control">
+                        <ui-thumbnail-picker [(thumbnailUrl)]="asset.thumbnailUrl"></ui-thumbnail-picker>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="form-control">
+                    <div class="label">Name</div>
+                    <div class="control">
+                        <input type="text" placeholder="Name" [(ngModel)]="asset.name" />
+                    </div>
+                </div>
+    
+                <div class="form-control">
+                    <div class="label">Type</div>
+                    <div class="control">
+                        <select placeholder="Type" [(ngModel)]="asset.typeId">
+                            <option *ngFor="let _type of types" [value]="_type.id">{{_type.name}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="form-control">
+                    <div class="label">Category 1</div>
+                    <div class="control">
+                        <select placeholder="Category 1" [(ngModel)]="asset.category1Id">
+                            <option *ngFor="let _category of categories" [value]="_category.id">{{_category.name}}</option>
+                        </select>
+                    </div>
+                </div>
+    
+                <div class="form-control">
+                    <div class="label">Category 2</div>
+                    <div class="control">
+                        <select placeholder="Category 2" [(ngModel)]="asset.category2Id">
+                            <option *ngFor="let _category of categories" [value]="_category.id">{{_category.name}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="form-control">
+                    <div class="label">Category 3</div>
+                    <div class="control">
+                        <select placeholder="Category 3" [(ngModel)]="asset.category3Id">
+                            <option *ngFor="let _category of categories" [value]="_category.id">{{_category.name}}</option>
+                        </select>
+                    </div>
+                </div>
+    
+                <div class="form-control">
+                    <div class="label">Engine / Software</div>
+                    <div class="control">
+                        <select placeholder="Engine" [(ngModel)]="asset.engine">
+                            <option value=""></option>
+                            <option value="Blender">Photoshop</option>
+                            <option value="Blender">Blender</option>
+                            <option value="Unreal Engine">Unreal Engine</option>
+                            <option value="Unity 3D">Unity 3D</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="form-control">
+                    <div class="label">Engine / Software Version</div>
+                    <div class="control">
+                        <input type="text" placeholder="Engine Version" [(ngModel)]="asset.engineVersion" />
+                    </div>
+                </div>
+    
+                <div class="form-control">
+                    <div class="label">Tags</div>
+                    <div class="control">
+                        <ui-tags-input [(tags)]="asset.tags"></ui-tags-input>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-control">
+                <div class="label">Note</div>
+                <div class="control">
+                    <textarea [(ngModel)]="asset.note"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <button class="btn-green" (click)="save()">
+                Save
+            </button>
+        </div>
+    </div>
+</div>
