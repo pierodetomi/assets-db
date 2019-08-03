@@ -7,6 +7,7 @@ import { DataService } from 'src/app/services/data.service';
 import { IAssetType } from 'src/app/models/asset-type';
 import { IAssetCategory } from 'src/app/models/asset-category';
 import { IAssetFile } from 'src/app/models/asset-file';
+import { AssetFileType } from 'src/app/models/asset-file-type';
 
 @Component({
     selector: "asset-page",
@@ -43,6 +44,16 @@ export class AssetPageComponent implements OnInit, OnDestroy {
         this.selectedFileForUpload = null;
         
         this.isLoading = true;
+    }
+
+    get fileTypes(): Array<string> {
+        var fileTypes: Array<string> = [];
+
+        for(var key in AssetFileType)
+            if(parseInt(key, 10) >= 0)
+                fileTypes.push(AssetFileType[key]);
+
+        return fileTypes;
     }
 
     ngOnInit(): void {
@@ -147,6 +158,28 @@ export class AssetPageComponent implements OnInit, OnDestroy {
         this.assetsApi.deleteAssetFile(this.id, file.id, function(): void {
             var indexToRemove: number = self.files.indexOf(file);
             self.files.splice(indexToRemove, 1);
+        });
+    }
+
+    public editFile(file: IAssetFile): void {
+        var f: any = file;
+        f.editingFileType = file.fileType;
+        f.editingComment = file.comment;
+        f.isEditing = true;
+    }
+
+    public cancelEditFile(file: IAssetFile): void {
+        var f: any = file;
+        f.isEditing = false;
+    }
+
+    public saveFile(file: IAssetFile): void {
+        var f: any = file;
+        file.fileType = f.editingFileType;
+        file.comment = f.editingComment;
+
+        this.assetsApi.updateAssetFile(file, function(updatedFile: IAssetFile): void {
+            f.isEditing = false;
         });
     }
 }

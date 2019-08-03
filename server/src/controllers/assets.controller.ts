@@ -156,6 +156,17 @@ export class AssetsController {
         });
     }
 
+    @Patch(":id/file")
+    async updateAssetFile(@Param("id") id: string, @Body() data: any): Promise<AssetType> {
+        var self: AssetsController = this;
+
+        return new Promise<AssetFile>(function(resolve, reject): void {
+            self.dbService.updateAssetFile(data, function(file: AssetFile): void {
+                resolve(file);
+            });
+        });
+    }
+
     @Get(":id/files")
     async getAssetFiles(@Param("id") assetId: string): Promise<Array<AssetFile>> {
         var self: AssetsController = this;

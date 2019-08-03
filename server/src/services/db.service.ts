@@ -148,6 +148,16 @@ export class DbService {
         });
     }
 
+    public updateAssetFile(file: any, callback: (assetFile: AssetFile) => void): void {
+        AssetFile.update(
+            file,
+            {
+                where: { id: file.id },
+                fields: [ "fileType", "comment" ]
+            })
+        .then(assetFile => callback(assetFile));
+    }
+
     public getAssetFile(id: string, callback: (assetFile: AssetFile) => void): void {
         AssetFile.findByPk(id).then(file => callback(file));
     }

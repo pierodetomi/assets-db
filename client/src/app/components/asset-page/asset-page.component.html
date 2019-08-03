@@ -62,13 +62,38 @@
         </div>
 
         <div class="files">
-            <div class="file" *ngFor="let _file of files">
-                <div class="actions">
+            <div class="file" [ngClass]="{ 'editing': _file.isEditing }" *ngFor="let _file of files">
+                <div class="actions" *ngIf="!_file.isEditing">
+                    <span class="action" (click)="editFile(_file)">edit</span>
                     <span class="action green" (click)="downloadFile(_file)">download</span>
                     <span class="action red" (click)="deleteFile(_file)">delete</span>
                 </div>
-                <div class="name">{{_file.name}}</div>
-                <div class="size">{{_file.size | fileSize}}</div>
+                
+                <div class="actions" *ngIf="_file.isEditing">
+                    <span class="action green" (click)="saveFile(_file)">save</span>
+                    <span class="action" (click)="cancelEditFile(_file)">cancel</span>
+                </div>
+
+                <div class="name">
+                    <span class="logo-blender" *ngIf="_file.name.indexOf('.blend') !== -1"></span>
+                    <span class="logo-texture" *ngIf="_file.name.indexOf('.png') !== -1 || _file.name.indexOf('.jpg') !== -1 || _file.name.indexOf('.tif') !== -1"></span>
+                    <span class="text">{{_file.name}}</span>
+                </div>
+                <div class="size">{{_file.size | fileSize}} - {{ _file.fileType }}</div>
+                <div class="comment" *ngIf="!_file.isEditing && _file.comment !== undefined && _file.comment !== null && _file.comment.length > 0">
+                    {{_file.comment}}
+                </div>
+
+                <div class="edit-form" *ngIf="_file.isEditing">
+                    <div class="form-label">File Type</div>
+                    <select [(ngModel)]="_file.editingFileType">
+                        <option value=""></option>
+                        <option [value]="_fileType" *ngFor="let _fileType of fileTypes">{{_fileType}}</option>
+                    </select>
+                    
+                    <div class="form-label">Comment</div>
+                    <textarea [(ngModel)]="_file.editingComment"></textarea>
+                </div>
             </div>
         </div>
     </div>

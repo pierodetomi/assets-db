@@ -131,4 +131,12 @@ export class AssetsApi {
         this.http.delete(url)
             .subscribe(() => callback());
     }
+
+    public updateAssetFile(file: IAssetFile, callback: (file: IAssetFile) => void): void {
+        var url: string = this.baseUrl + "/" + file.assetId + "/file";
+        this.http.patch<IAssetFile>(url, file)
+            .subscribe(data => {
+                callback(data);
+            });
+    }
 }

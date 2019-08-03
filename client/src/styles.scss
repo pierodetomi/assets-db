@@ -91,4 +91,11 @@ ui-tags-input {
     margin: 20px 0;
 }
 
+.form-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: $app-text-color;
+    text-transform: uppercase;
+}
+
 @import "./app/styles/ui";

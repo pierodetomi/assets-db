@@ -8,7 +8,9 @@ export class AssetFile extends Model {
                 assetId: { type: DataTypes.UUIDV4, allowNull: false },
                 name: { type: DataTypes.STRING, allowNull: false },
                 size: { type: DataTypes.NUMBER, allowNull: false },
-                type: { type: DataTypes.STRING, allowNull: true }
+                type: { type: DataTypes.STRING, allowNull: true },
+                fileType: { type: DataTypes.STRING, allowNull: true },
+                comment: { type: DataTypes.STRING(1000), allowNull: true }
             },
             {
                 sequelize: db,
