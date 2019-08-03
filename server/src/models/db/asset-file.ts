@@ -19,4 +19,8 @@ export class AssetFile extends Model {
         if(syncDb)
             AssetFile.sync({ force: true });
     }
+
+    public static syncSchema(): void {
+        AssetFile.sync({ force: true });
+    }
 }

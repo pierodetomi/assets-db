@@ -16,4 +16,8 @@ export class AssetType extends Model {
         if(syncDb)
             AssetType.sync({ force: true });
     }
+
+    public static syncSchema(): void {
+        AssetType.sync({ force: true });
+    }
 }

@@ -12,6 +12,17 @@ import { Stream } from 'stream';
 export class AssetsController {
     constructor(private readonly dbService: DbService) { }
 
+    @Get("create-db")
+    createDb(): string {
+        Asset.syncSchema();
+        AssetType.syncSchema();
+        AssetCategory.syncSchema();
+        AssetFile.syncSchema();
+        AssetFileData.syncSchema();
+
+        return "OK";
+    }
+
     @Put("type")
     async addType(@Body() data: any): Promise<AssetType> {
         var self: AssetsController = this;

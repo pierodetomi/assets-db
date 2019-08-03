@@ -1,3 +1,3 @@
 {
-    "dbPath": "C:/Users/de_tomi/Desktop/db.sqlite"
+    "dbPath": "absolute/path/to/sqlite/db"
 }

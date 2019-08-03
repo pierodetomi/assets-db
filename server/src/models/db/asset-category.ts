@@ -16,4 +16,8 @@ export class AssetCategory extends Model {
         if(syncDb)
             AssetCategory.sync({ force: true });
     }
+
+    public static syncSchema(): void {
+        AssetCategory.sync({ force: true });
+    }
 }
