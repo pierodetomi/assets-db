@@ -133,7 +133,7 @@ export class AssetPageComponent implements OnInit, OnDestroy {
         
         this.assetsApi.addAssetFile(this.id, this.selectedFileForUpload, function(assetFile: IAssetFile): void {
             self.selectedFileForUpload = null;
-            console.log(assetFile);
+            self.files.push(assetFile);
         });
     }
 

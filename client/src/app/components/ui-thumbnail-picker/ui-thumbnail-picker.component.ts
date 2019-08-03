@@ -10,7 +10,13 @@ export class UIThumbnailPickerComponent {
 
     @Output() public thumbnailUrlChange =new EventEmitter();
 
-    public hasThumbnail: boolean;
+    get hasThumbnail(): boolean {
+        return (
+            this.thumbnailUrl !== undefined &&
+            this.thumbnailUrl !== null &&
+            this.thumbnailUrl.length > 0
+        );
+    }
 
     constructor(private elementRef: ElementRef) { }
 
@@ -30,8 +36,6 @@ export class UIThumbnailPickerComponent {
 
             self.thumbnailUrl = <any>(reader.result);
             self.thumbnailUrlChange.emit(self.thumbnailUrl);
-
-            self.hasThumbnail = true;
         };
         reader.onerror = function (error) {
             console.log('Error: ', error);
