@@ -35,17 +35,17 @@
         
                 <div class="info-block">
                     <span class="label">Engine</span>
-                    <span class="value">{{asset.engine}}</span>
+                    <span class="value">{{asset.engine ? asset.engine : '-'}}</span>
                 </div>
         
                 <div class="info-block">
                     <span class="label">Engine Version</span>
-                    <span class="value">{{asset.engineVersion}}</span>
+                    <span class="value">{{asset.engineVersion ? asset.engineVersion : '-'}}</span>
                 </div>
         
                 <div class="info-block">
                     <span class="label">Note</span>
-                    <span class="value">{{asset.note}}</span>
+                    <span class="value">{{asset.note ? asset.note : '-'}}</span>
                 </div>
             </div>
         </div>
