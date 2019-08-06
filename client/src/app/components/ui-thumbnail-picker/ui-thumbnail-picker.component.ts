@@ -32,8 +32,6 @@ export class UIThumbnailPickerComponent {
         var self: UIThumbnailPickerComponent = this;
 
         reader.onload = function () {
-            console.log(reader.result);
-
             self.thumbnailUrl = <any>(reader.result);
             self.thumbnailUrlChange.emit(self.thumbnailUrl);
         };

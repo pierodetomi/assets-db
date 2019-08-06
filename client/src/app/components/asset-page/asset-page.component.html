@@ -7,7 +7,12 @@
         </div>
     
         <div class="details">
-            <div class="box">
+            <div class="box" *ngIf="!isEditing">
+                <div class="actions">
+                    <span class="mdi mdi-pencil action" (click)="editAsset()"></span>
+                    <span class="mdi mdi-delete action" (click)="deleteAsset()"></span>
+                </div>
+
                 <div class="info-block">
                     <span class="label">Type</span>
                     <span class="value">{{getTypeName()}}</span>
@@ -46,6 +51,80 @@
                 <div class="info-block">
                     <span class="label">Note</span>
                     <span class="value">{{asset.note ? asset.note : '-'}}</span>
+                </div>
+            </div>
+
+            <div class="box" *ngIf="isEditing">
+                <div class="actions">
+                    <span class="mdi mdi-check-outline action" (click)="saveAsset()"></span>
+                    <span class="mdi mdi-close action" (click)="cancelEditAsset()"></span>
+                </div>
+
+                <div class="info-block inline">
+                    <span class="label">Name</span>
+                    <input type="text" [(ngModel)]="editingAsset.name" />
+                </div>
+
+                <div class="info-block inline">
+                    <span class="label">Type</span>
+                    <select [(ngModel)]="editingAsset.typeId">
+                        <option *ngFor="let _type of types" [value]="_type.id">{{_type.name}}</option>
+                    </select>
+                </div>
+
+                <div>&nbsp;</div>
+
+                <div class="info-block inline">
+                    <span class="label">Category 1</span>
+                    <select [(ngModel)]="editingAsset.category1Id">
+                        <option *ngFor="let _category of categories" [value]="_category.id">{{_category.name}}</option>
+                    </select>
+                </div>
+
+                <div class="info-block inline">
+                    <span class="label">Category 2</span>
+                    <select [(ngModel)]="editingAsset.category2Id">
+                        <option *ngFor="let _category of categories" [value]="_category.id">{{_category.name}}</option>
+                    </select>
+                </div>
+
+                <div class="info-block inline">
+                    <span class="label">Category 3</span>
+                    <select [(ngModel)]="editingAsset.category3Id">
+                        <option *ngFor="let _category of categories" [value]="_category.id">{{_category.name}}</option>
+                    </select>
+                </div>
+
+                <div>&nbsp;</div>
+
+                <div class="info-block inline">
+                    <span class="label">Engine / Software</span>
+                    <select [(ngModel)]="editingAsset.engine">
+                        <option value=""></option>
+                        <option value="Blender">Photoshop</option>
+                        <option value="Blender">Blender</option>
+                        <option value="Unreal Engine">Unreal Engine</option>
+                        <option value="Unity 3D">Unity 3D</option>
+                    </select>
+                </div>
+
+                <div class="info-block inline">
+                    <span class="label">Engine / Software Version</span>
+                    <input type="text" [(ngModel)]="editingAsset.engineVersion" />
+                </div>
+
+                <div>&nbsp;</div>
+
+                <div class="block-info inline">
+                    <span class="label">Tags</span>
+                    <ui-tags-input [(tags)]="editingAsset.tags"></ui-tags-input>
+                </div>
+
+                <div>&nbsp;</div>
+
+                <div class="block-info inline">
+                    <span class="label">Note</span>
+                    <textarea [(ngModel)]="editingAsset.note"></textarea>
                 </div>
             </div>
         </div>

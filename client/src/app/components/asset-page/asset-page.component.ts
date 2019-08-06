@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { IAsset } from 'src/app/models/asset';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AssetsApi } from 'src/app/api/assets.api';
 import { DataService } from 'src/app/services/data.service';
 import { IAssetType } from 'src/app/models/asset-type';
@@ -28,14 +28,18 @@ export class AssetPageComponent implements OnInit, OnDestroy {
     public categories: Array<IAssetCategory>;
 
     public asset: IAsset;
+
+    public editingAsset: IAsset;
     
     public files: Array<IAssetFile>;
 
     public isLoading: boolean;
 
+    public isEditing: boolean;
+
     private selectedFileForUpload: File;
 
-    constructor(private route: ActivatedRoute, private data: DataService, private assetsApi: AssetsApi) {
+    constructor(private route: ActivatedRoute, private router: Router, private data: DataService, private assetsApi: AssetsApi) {
         this.id = null;
         this.types = [];
         this.categories = [];
@@ -44,6 +48,7 @@ export class AssetPageComponent implements OnInit, OnDestroy {
         this.selectedFileForUpload = null;
         
         this.isLoading = true;
+        this.isEditing = false;
     }
 
     get fileTypes(): Array<string> {
@@ -122,6 +127,41 @@ export class AssetPageComponent implements OnInit, OnDestroy {
             }
         
         return category !== null ? category.name : "-";
+    }
+
+    public editAsset(): void {
+        this.editingAsset = <any>{};
+        
+        for(var key in this.asset)
+            this.editingAsset[key] = this.asset[key];
+
+        this.isEditing = true;
+    }
+
+    public cancelEditAsset(): void {
+        this.isEditing = false;
+    }
+
+    public saveAsset(): void {
+        var self: AssetPageComponent = this;
+
+        this.assetsApi.updateAsset(this.editingAsset, function(): void {
+            self.asset = self.editingAsset;
+            self.isEditing = false;
+        });
+    }
+
+    public deleteAsset(): void {
+        var isConfirmed: boolean = confirm("Are you sure you want to delete this asset?");
+
+        if(!isConfirmed)
+            return;
+
+        var self: AssetPageComponent = this;
+
+        this.assetsApi.deleteAsset(this.asset.id, function(): void {
+            self.router.navigate([ "/assets" ], { replaceUrl: true });
+        });
     }
 
     public onSelectedFileForUpload(event) {

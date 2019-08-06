@@ -10,6 +10,10 @@ export class AssetViewerService {
         this.filter = new BehaviorSubject<AssetsFilter>(null);
     }
 
+    public getFilter(): AssetsFilter {
+        return this.filter.getValue();
+    }
+
     public setFilter(filter: AssetsFilter): void {
         this.filter.next(filter);
     }

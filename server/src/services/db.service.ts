@@ -7,6 +7,7 @@ import { AssetCategory } from 'src/models/db/asset-category';
 import { AssetFile } from 'src/models/db/asset-file';
 import { AssetFileData } from 'src/models/db/asset-file-data';
 import { AppConfigService } from './app-config.service';
+import { promises } from 'fs';
 
 @Injectable()
 export class DbService {
@@ -101,6 +102,49 @@ export class DbService {
 
     public getAssetById(id: string, callback: (asset: Asset) => void): void {
         Asset.findByPk(id).then(asset => callback(asset));
+    }
+
+    public updateAsset(data: any, callback: () => void): void {
+        Asset.update(
+            data,
+            {
+                where: { id: data.id }
+            })
+        .then(() => callback());
+    }
+
+    public deleteAsset(assetId: string, callback: () => void): void {
+        var self: DbService = this;
+        
+        // First delete all asset files
+        this.getAssetFiles(assetId, function(files: Array<AssetFile>): void {
+            var deletePromises: Array<Promise<void>> = [];
+
+            for(var i: number = 0; i < files.length; i++) {
+                var fileId: string = (<any>(files[i].get({ plain: true }))).id;
+                var promise: Promise<void> = self.deleteAssetFilePromise(fileId);
+                deletePromises.push(promise);
+            }
+            
+            Promise.all(deletePromises)
+                .then(function(): void {
+                    
+                    Asset.destroy({
+                        where: { id: assetId }
+                    })
+                    .then(() => callback());
+                });
+        });
+    }
+
+    private deleteAssetFilePromise(fileId: string): Promise<void> {
+        var self: DbService = this;
+
+        return new Promise(function(resolve: any, reject: any): void {
+            self.deleteAssetFile(fileId, function(): void {
+                resolve();
+            });
+        });
     }
 
     public getAssets(filter: any, callback: (assets: Array<Asset>) => void): void {

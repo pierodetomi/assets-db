@@ -103,6 +103,20 @@ export class AssetsApi {
             });
     }
 
+    public updateAsset(asset: IAsset, callback: () => void): void {
+        var url: string = this.baseUrl;
+        this.http.patch<IAsset>(url, asset)
+            .subscribe(data => {
+                callback();
+            });
+    }
+
+    public deleteAsset(assetId: string, callback: () => void): void {
+        var url: string = this.baseUrl + "/" + assetId;
+        this.http.delete(url)
+            .subscribe(() => callback());
+    }
+
     public addAssetFile(id: string, file: File, callback: (assetFile: any) => void): void {
         var form: FormData = new FormData();
         form.append("file", file);

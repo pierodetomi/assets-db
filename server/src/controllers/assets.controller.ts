@@ -144,6 +144,28 @@ export class AssetsController {
         });
     }
 
+    @Patch()
+    async updateAsset(@Body() data: any): Promise<AssetType> {
+        var self: AssetsController = this;
+
+        return new Promise<Asset>(function(resolve, reject): void {
+            self.dbService.updateAsset(data, function(): void {
+                resolve();
+            });
+        });
+    }
+
+    @Delete(":id")
+    async deleteAsset(@Param("id") assetId: string): Promise<void> {
+        var self: AssetsController = this;
+
+        return new Promise(function(resolve, reject): void {
+            self.dbService.deleteAsset(assetId, function(): void {
+                resolve();
+            });
+        });
+    }
+
     @Put(":id/files")
     @UseInterceptors(FileInterceptor("file"))
     async addAssetFile(@UploadedFile() file, @Param("id") id: string): Promise<AssetFile> {

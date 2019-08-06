@@ -1,11 +1,11 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 
 @Component({
     selector: "ui-tags-input",
     templateUrl: "./ui-tags-input.component.html",
     styleUrls: [ "./ui-tags-input.component.scss" ]
 })
-export class UITagsInputComponent {
+export class UITagsInputComponent implements OnInit {
     @Input() public tags: Array<string>;
 
     @Output() public tagsChange = new EventEmitter();
@@ -14,6 +14,14 @@ export class UITagsInputComponent {
 
     constructor() {
 
+    }
+
+    ngOnInit(): void {
+        if(this.tags === undefined || this.tags === null)
+            return;
+        
+        var t: any = this.tags;
+        this.tags = t.split(",");
     }
 
     public onKeyDown(evt: KeyboardEvent): any {
